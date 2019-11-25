@@ -1,33 +1,17 @@
 <template>
   <section class="container">
     <div>
-      <app-logo/>
-      <h1 class="title">
-        mnk-lab
-      </h1>
-      <h2 class="subtitle">
-        Math mod lab 2 (MNK)
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
+      <Table/>
     </div>
   </section>
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue'
+import Table from '~/components/Table.vue'
 
 export default {
   components: {
-    AppLogo
+    Table,
   }
 }
 </script>
