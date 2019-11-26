@@ -1,18 +1,36 @@
 <template>
   <section class="container">
-    <div>
-      <Table/>
+    <div class="wrapper">
+      <Chart
+        :points="points"
+      />
+      <Table
+        v-on:valueschange="saveValues"
+      />
     </div>
   </section>
 </template>
 
 <script>
-import Table from '~/components/Table.vue'
+import Table from '~/components/Table.vue';
+import Chart from '~/components/Chart.vue';
 
 export default {
   components: {
     Table,
-  }
+    Chart,
+  },
+  data: () => ({
+    points: {}
+  }),
+  methods: {
+    saveValues(values) {
+      this.points = {
+        X: values.X,
+        Y: values.Y,
+      }
+    }
+  },
 }
 </script>
 
@@ -34,16 +52,17 @@ export default {
   letter-spacing: 1px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.links {
-  padding-top: 15px;
+.chart {
+  margin-right: 20px;
 }
+
+
 </style>
 
