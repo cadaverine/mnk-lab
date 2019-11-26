@@ -44,13 +44,25 @@ export default {
     },
   }),
   updated() {
-    // test values reactivity
-    console.log(this.values)
+    if (this.isValuesValid(this.values)) {
+      this.$emit("valueschange", this.values);
+    }
   },
   methods: {
     getRange(value) {
       return range(value);
     },
+    isValuesValid(values) {
+      if (
+        values.X.some(x => isNaN(parseFloat(x))) ||
+        values.Y.some(y => isNaN(parseFloat(y))) ||
+        values.Ro.some(ro => isNaN(parseFloat(ro)))
+      ) {
+        return false;
+      }
+
+      return true;
+    }
   }
 }
 </script>
