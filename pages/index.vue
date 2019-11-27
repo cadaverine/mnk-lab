@@ -1,12 +1,21 @@
 <template>
   <section class="container">
     <Header class="header">Math modeling laboratory work №2 - Least squares method</Header>
+    <div class="buttons">
+      <button
+        class="button button_generate"
+        @click="generateRandomValues"
+      >
+        Generate values
+      </button>
+    </div>
     <div class="wrapper">
       <Chart
         :points="points"
       />
       <Table
-        v-on:valueschange="saveValues"
+        @valueschange="saveValues"
+        ref="table"
       />
     </div>
   </section>
@@ -30,6 +39,9 @@ export default {
         X: values.X,
         Y: values.Y,
       }
+    },
+    generateRandomValues () {
+      this.$refs.table.generateRandomValues();
     }
   },
 }
@@ -73,6 +85,13 @@ export default {
   margin-right: 60px;
 }
 
+.buttons {
+  height: 70px;
+}
+
+.button {
+  font-size: 16px;
+}
 
 </style>
 

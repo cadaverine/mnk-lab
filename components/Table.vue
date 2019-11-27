@@ -18,7 +18,6 @@
         :key="i"
         v-model="values[heading][index]"/>
     </div>
-
   </div>
 </template>
 
@@ -45,7 +44,7 @@ export default {
     },
   }),
   mounted() {
-    this.generateRandomValues(1, 7.1);
+    this.generateRandomValues();
   },
   updated() {
     if (this.isValuesValid(this.values)) {
@@ -67,16 +66,12 @@ export default {
 
       return true;
     },
-    generateRandomValues(stepX, maxY) {
-      this.values.Ro = [];
-      this.values.X = [];
-      this.values.Y = [];
+    generateRandomValues(stepX = 1, maxY = 7.1) {
+      const indexes = range(this.rowsNumber);
 
-      for (const i of range(this.rowsNumber)) {
-        this.values.Ro.push(1)
-        this.values.X.push(i * stepX)
-        this.values.Y.push(random(0.0, maxY).toFixed(2))
-      }
+      this.values.Ro = indexes.map(() => 1);
+      this.values.X = indexes.map(i => i * stepX);
+      this.values.Y = indexes.map(() => random(0.0, maxY).toFixed(2));
     }
   }
 }
