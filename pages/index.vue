@@ -60,7 +60,7 @@ export default {
 }
 
 .chart {
-  margin-right: 20px;
+  margin-right: 60px;
 }
 
 
