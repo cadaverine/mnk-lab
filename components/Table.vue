@@ -24,6 +24,7 @@
 
 <script>
 import range from 'lodash/range';
+import random from 'lodash/random';
 
 export default {
   props: {
@@ -43,6 +44,9 @@ export default {
       Ro: [],
     },
   }),
+  mounted() {
+    this.generateRandomValues(1, 7.1);
+  },
   updated() {
     if (this.isValuesValid(this.values)) {
       this.$emit("valueschange", this.values);
@@ -62,6 +66,17 @@ export default {
       }
 
       return true;
+    },
+    generateRandomValues(stepX, maxY) {
+      this.values.Ro = [];
+      this.values.X = [];
+      this.values.Y = [];
+
+      for (const i of range(this.rowsNumber)) {
+        this.values.Ro.push(1)
+        this.values.X.push(i * stepX)
+        this.values.Y.push(random(0.0, maxY).toFixed(2))
+      }
     }
   }
 }
@@ -72,6 +87,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 330px;
+    margin-top: 2px;
   }
 
   .table__row {

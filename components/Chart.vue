@@ -47,9 +47,20 @@ export default {
   },
   methods: {
     convertPointsToData(points) {
+      const pointsMap = new Map();
+      const xFloats = points.X.map(parseFloat);
+      let yFloats = points.Y.map(parseFloat);
+
+      for (const [i, x] of xFloats.entries()) {
+        pointsMap.set(x, yFloats[i])
+      }
+
+      xFloats.sort((a, b) => a - b)
+      yFloats = xFloats.map(x => pointsMap.get(x))
+
       return {
-        data: points.Y.map(parseFloat),
-        labels: points.X.map(String),
+        data: yFloats,
+        labels: xFloats.map(String),
       }
     },
     updateDataset(points) {
