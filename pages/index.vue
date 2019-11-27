@@ -1,5 +1,6 @@
 <template>
   <section class="container">
+    <Header class="header">Math modeling laboratory work №2 - Least squares method</Header>
     <div class="wrapper">
       <Chart
         :points="points"
@@ -38,9 +39,18 @@ export default {
 .container {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.header {
+  height: 50px;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration-line: underline;
+  color: #333;
 }
 
 .title {
