@@ -1,4 +1,8 @@
 module.exports = {
+  mode: 'spa',
+  router: {
+    base: '/mnk-lab/'
+  },
   /*
   ** Headers of the page
   */
