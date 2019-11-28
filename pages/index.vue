@@ -38,6 +38,7 @@ export default {
       this.points = {
         X: values.X,
         Y: values.Y,
+        Ro: values.Ro,
       }
     },
     generateRandomValues () {

@@ -11,12 +11,14 @@
 
 <script>
 import { Chart } from "chart.js";
+import mnk from "@/assets/mnk";
 
 export default {
   props: {
     points: {
       Y: [],
       X: [],
+      Ro: [],
     }
   },
   data: () => ({
@@ -35,13 +37,20 @@ export default {
 			data: {
 				labels: this.x,
 				datasets: [{
-					label: 'MNK',
-					data: this.y,
+					label: 'Spline',
+					data: null,
 					borderColor: '#7fffd4',
 					backgroundColor: 'rgba(0, 0, 0, 0)',
 					fill: false,
 					cubicInterpolationMode: 'monotone'
-				}]
+				}, {
+          label: 'MNK',
+					data: null,
+					borderColor: '#711E9F',
+					backgroundColor: 'rgba(0, 0, 0, 0)',
+					fill: false,
+					cubicInterpolationMode: 'monotone'
+        }]
       }
     })
   },
@@ -65,9 +74,11 @@ export default {
     },
     updateDataset(points) {
       const converted = this.convertPointsToData(points);
+      const mnkResult = mnk(points.X, points.Y, points.Ro, 2);
 
       this.chart.data.labels = converted.labels;
       this.chart.data.datasets[0].data = converted.data;
+      this.chart.data.datasets[1].data = mnkResult.Y;
       this.chart.update();
     }
   },
