@@ -19,13 +19,19 @@ export default {
       Y: [],
       X: [],
       Ro: [],
-    }
+    },
+    polynome: {
+      degree: 1,
+    },
   },
   data: () => ({
     chart: null,
   }),
   watch: {
     points() {
+      this.updateDataset(this.points);
+    },
+    ["polynome.degree"]() {
       this.updateDataset(this.points);
     }
   },
@@ -74,11 +80,16 @@ export default {
     },
     updateDataset(points) {
       const converted = this.convertPointsToData(points);
-      const mnkResult = mnk(points.X, points.Y, points.Ro, 2);
 
       this.chart.data.labels = converted.labels;
       this.chart.data.datasets[0].data = converted.data;
-      this.chart.data.datasets[1].data = mnkResult.Y;
+
+      const degree = parseInt(this.polynome.degree)
+      if (Number.isFinite(degree)) {
+        const mnkResult = mnk(points.X, points.Y, points.Ro, degree);
+        this.chart.data.datasets[1].data = mnkResult.Y;
+      }
+
       this.chart.update();
     }
   },

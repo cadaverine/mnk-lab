@@ -8,10 +8,21 @@
       >
         Generate values
       </button>
+      <div
+        class="input_box">
+        <div
+          class="input_text">
+          Degree of a polynomial:
+        </div>
+        <input
+          class="input"
+          v-model="polynome.degree">
+      </div>
     </div>
     <div class="wrapper">
       <Chart
         :points="points"
+        :polynome="polynome"
       />
       <Table
         @valueschange="saveValues"
@@ -31,7 +42,10 @@ export default {
     Chart,
   },
   data: () => ({
-    points: {}
+    points: {},
+    polynome: {
+      degree: 1,
+    },
   }),
   methods: {
     saveValues(values) {
@@ -87,11 +101,32 @@ export default {
 }
 
 .buttons {
-  height: 70px;
+  display: flex;
+  height: 40px;
+  margin-bottom: 50px;
 }
 
 .button {
   font-size: 16px;
+}
+
+.input_box {
+  display: flex;
+  margin-left: 30px;
+}
+
+.input_text {
+  width: 180px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 120px;
+  font-size: 18px;
+  text-align: center;
 }
 
 </style>
