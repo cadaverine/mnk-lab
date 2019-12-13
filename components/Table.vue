@@ -66,11 +66,11 @@ export default {
 
       return true;
     },
-    generateRandomValues(stepX = 1, maxY = 7.1) {
+    generateRandomValues(stepX = 0.2, maxY = 7.1) {
       const indexes = range(this.rowsNumber);
 
       this.values.Ro = indexes.map(() => 1);
-      this.values.X = indexes.map(i => i * stepX);
+      this.values.X = indexes.map(i => (i * stepX).toFixed(2));
       this.values.Y = indexes.map(() => random(0.0, maxY).toFixed(2));
     }
   }

@@ -11,7 +11,7 @@
 
 <script>
 import { Chart } from "chart.js";
-import mnk from "@/assets/mnk";
+import getCoordsByLSM from "@/assets/getCoordsByLSM";
 
 export default {
   props: {
@@ -50,7 +50,7 @@ export default {
 					fill: false,
 					cubicInterpolationMode: 'monotone'
 				}, {
-          label: 'MNK',
+          label: 'LSM',
 					data: null,
 					borderColor: '#711E9F',
 					backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -86,8 +86,8 @@ export default {
 
       const degree = parseInt(this.polynome.degree)
       if (Number.isFinite(degree)) {
-        const mnkResult = mnk(points.X, points.Y, points.Ro, degree);
-        this.chart.data.datasets[1].data = mnkResult.Y;
+        const lsmResult = getCoordsByLSM(points.X, points.Y, points.Ro, degree);
+        this.chart.data.datasets[1].data = lsmResult.Y;
       }
 
       this.chart.update();
